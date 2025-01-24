@@ -1,3 +1,5 @@
+
+<!-- witout icon -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +17,7 @@
             align-items: center;
             height: 100vh;
         }
+       
 
         .container {
             background: white;
@@ -133,20 +136,25 @@
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-
+       
+         // Import the functions you need from the SDKs you need
+         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyB__ON6fLbemYMn56Madp3J0M7-Lo03U2M",
-            authDomain: "login-auth-32c41.firebaseapp.com",
-            projectId: "login-auth-32c41",
-            storageBucket: "login-auth-32c41.appspot.com",
-            messagingSenderId: "784923065748",
-            appId: "1:784923065748:web:f825c8ccc152aa24612381"
+          apiKey: "AIzaSyDW5gelhtKw5M9GuJXmAD6iU-VQlUpDTcU",
+          authDomain: "user-register-5fa92.firebaseapp.com",
+          projectId: "user-register-5fa92",
+          storageBucket: "user-register-5fa92.firebasestorage.app",
+          messagingSenderId: "402921013832",
+          appId: "1:402921013832:web:42847014a2c86dbac6ce7d"
         };
-
+        
         const app = initializeApp(firebaseConfig);
-        const auth = getAuth();
+     
 
         const form = document.getElementById("registrationForm");
         const emailInput = document.getElementById("email");
@@ -158,8 +166,24 @@
         const loading = document.getElementById("loading");
         const successMessage = document.getElementById("successMessage");
 
+         // Toggle password visibility
+        document.getElementById("togglePassword").addEventListener("click", function () {
+            togglePasswordVisibility(passwordInput, this);
+        });
+
+        document.getElementById("toggleConfirmPassword").addEventListener("click", function () {
+            togglePasswordVisibility(confirmPasswordInput, this);
+        });
+
+        function togglePasswordVisibility(input, button) {
+            const isPasswordVisible = input.type === "text";
+            input.type = isPasswordVisible ? "password" : "text";
+            button.textContent = isPasswordVisible ? "Show" : "Hide";
+        }
+
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
+            const auth = getAuth();
             emailError.textContent = "";
             passwordError.textContent = "";
             confirmPasswordError.textContent = "";
@@ -190,7 +214,7 @@
                 await createUserWithEmailAndPassword(auth, email, password);
                 successMessage.textContent = "Registration successful! Redirecting to login...";
                 setTimeout(() => {
-                    window.location.href = "http://127.0.0.1:5500/user/user-login-page/index.html";
+                    window.location.href = "https://rishikeshkumaryadav77.github.io/loginpage-user-side/";
                 }, 3000);
             } catch (error) {
                 emailError.textContent = error.message;
@@ -198,6 +222,12 @@
                 loading.style.display = "none";
             
         });
+       
+
     </script>
 </body>
 </html>
+
+
+
+
